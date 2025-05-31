@@ -26,7 +26,7 @@ def generate_code():
 
     try:
         response = client.chat.completions.create(
-            model="gpt-4o",  # ✅ Correction ici
+            model="gpt-4o",  # ✅ GPT-4 Omni
             messages=[
                 {"role": "system", "content": "Tu es un assistant qui génère du code clair, moderne et bien structuré."},
                 {"role": "user", "content": prompt}
