@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Générateur de code</title>
+  <style>
+    body{font-family:Arial,sans-serif;padding:2rem;background:#f4f4f4}
+    textarea,pre{width:100%;padding:1rem;font-size:16px;border-radius:8px;border:1px solid #ccc}
+    button{margin-top:1rem;padding:1rem 1.5rem;font-size:16px;background:#007bff;color:#fff;border:0;border-radius:8px;cursor:pointer}
+    button:hover{background:#0056b3}
+  </style>
+</head>
+<body>
+  <h1>🧠 Générateur de code IA</h1>
+  <p>Décris ton idée :</p>
+  <textarea id="prompt" rows="4" placeholder="Ex : Crée une page Flutter avec un bouton bleu"></textarea>
+  <button onclick="generateCode()">Générer le code</button>
+
+  <h2>💻 Code généré :</h2>
+  <pre id="output">// Le code s’affichera ici...</pre>
+
+  <script>
+    async function generateCode(){
+      const prompt=document.getElementById("prompt").value;
+      const output=document.getElementById("output");
+      output.textContent="⏳ Génération du code...";
+      const res=await fetch("/api/generate",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt})});
+      const data=await res.json();
+      output.textContent=data.output;
+    }
+  </script>
+</body>
+</html>

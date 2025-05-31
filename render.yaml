@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: code-generator-api
+    env: python
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "python main.py"
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
